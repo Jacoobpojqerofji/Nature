@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Tienda de Ropa</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionales según sea necesario */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cart-items {
+            padding: 20px 0;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .cart-item h3 {
+            margin: 0;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .search-form input {
+            padding: 0.5em;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-form button {
+            padding: 0.5em;
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-form button:hover {
+            background-color: #555;
+        }
+
+        .cart-button, .register-button {
+            background-color: #333;
+            color: #fff;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .register-button {
+            margin-right: 10px;
+        }
+
+        .cart-button:hover, .register-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tienda de Ropa</h1>
+            <nav>
+                <ul>
+                    <li><a href="Nature (prototipo 5).html">Inicio</a></li>
+					<li><a href="Pasarela de pago.html">Comprar Ahora</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cart-items">
+            <div class="container">
+                <h2>Carrito de Compras</h2>
+                <div id="cart-list">
+                    <!-- Los productos del carrito se mostrarán aquí -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tienda de Ropa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartList = document.getElementById('cart-list');
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<p>El carrito está vacío.</p>';
+                return;
+            }
+
+            cartList.innerHTML = '';
+            cart.forEach((item, index) => {
+                let cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>Precio: $${item.price.toFixed(2)}</p>
+                    <button onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartList.appendChild(cartItem);
+            });
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

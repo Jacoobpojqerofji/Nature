@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .product-detail {
+            padding: 20px 0;
+        }
+
+        .product-detail img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .product-detail h2 {
+            margin-top: 0;
+        }
+
+        .product-detail p {
+            line-height: 1.5;
+        }
+
+        .product-detail button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product-detail button:hover {
+            background-color: #555;
+        }
+
+        .cart-button, .register-button {
+            background-color: #333;
+            color: #fff;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .register-button {
+            margin-right: 10px;
+        }
+
+        .cart-button:hover, .register-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tienda de Ropa</h1>
+            <nav>
+                <ul>
+                    <li><a href="Nature (prototipo 5).html">Inicio</a></li>
+                </ul>
+            </nav>
+            <a href="register.html" class="register-button">Crear Cuenta</a>
+            <a href="cart.html" class="cart-button">Carrito</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-detail">
+            <div class="container">
+                <img src="producto1.jpg" alt="Producto 1">
+                <h2>Vestido de Verano</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+                <p>Precio: $30.00</p>
+                <button onclick="addToCart('Producto 3', 30.00)">Agregar al Carrito</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tienda de Ropa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(productName, productPrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(productName + ' ha sido agregado al carrito.');
+        }
+    </script>
+</body>
+</html>
